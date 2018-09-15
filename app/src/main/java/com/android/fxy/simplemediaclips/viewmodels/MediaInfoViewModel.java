@@ -3,6 +3,7 @@ package com.android.fxy.simplemediaclips.viewmodels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.android.fxy.simplemediaclips.model.MediaInfo;
@@ -14,7 +15,8 @@ import java.util.List;
 public class MediaInfoViewModel extends AndroidViewModel {
 
     private MediaInfoRepository mediaInfoRepository;
-    private LiveData<List<MediaInfo>> allMediaInfos;
+    private MutableLiveData<MediaInfo> currentMediaInfo;
+
 
     public MediaInfoViewModel(@NonNull Application application) {
         super(application);
@@ -31,6 +33,13 @@ public class MediaInfoViewModel extends AndroidViewModel {
 
     public void deleteAll() {
         mediaInfoRepository.deleteAll();
+    }
+
+    public MutableLiveData<MediaInfo> getCurrentMediaInfo() {
+        if (currentMediaInfo == null) {
+            currentMediaInfo = new MutableLiveData<>();
+        }
+        return currentMediaInfo;
     }
 
 }

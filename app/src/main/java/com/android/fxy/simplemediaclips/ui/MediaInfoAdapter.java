@@ -1,22 +1,20 @@
 package com.android.fxy.simplemediaclips.ui;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.android.fxy.simplemediaclips.R;
-import com.android.fxy.simplemediaclips.commom.LogUtils;
 import com.android.fxy.simplemediaclips.model.MediaInfo;
 
 import java.util.List;
 
-public class MediaInfoAdapter extends RecyclerView.Adapter<MediaInfoAdapter.MediaInfoViewHolder> {
+public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
+    protected ItemSelectedListener mItemSelectedListener = new ItemSelectedListener() {
+        @Override
+        public void onItemSellectk(int position) {
+        }
+    };
     private final LayoutInflater mInflater;
     private List<MediaInfo> mediaInfos;
 
@@ -24,20 +22,12 @@ public class MediaInfoAdapter extends RecyclerView.Adapter<MediaInfoAdapter.Medi
         mInflater = LayoutInflater.from(context);
     }
 
-    @NonNull
-    @Override
-    public MediaInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item_top, parent, false);
-        return new MediaInfoViewHolder(itemView);
+    public void setOnItemSelected(ItemSelectedListener listener) {
+        this.mItemSelectedListener = listener;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MediaInfoViewHolder holder, int position) {
-        LogUtils.d("onBindViewHolder mediaInfos:" + mediaInfos);
-        if (mediaInfos != null) {
-            MediaInfo current = mediaInfos.get(position);
-         } else {
-         }
+    public interface ItemSelectedListener {
+        void onItemSellectk(int position);
     }
 
     public void setData(List<MediaInfo> items) {
@@ -47,23 +37,17 @@ public class MediaInfoAdapter extends RecyclerView.Adapter<MediaInfoAdapter.Medi
 
     @Override
     public int getItemCount() {
-        if (mediaInfos != null)
+        if (mediaInfos != null) {
             return mediaInfos.size();
-        else return 0;
+
+        } else return 0;
     }
 
-    /**
-     * {   "id":1,
-     * "imageUrl": "https://wpclipart.com/education/animal_numbers/animal_number_1.jpg",
-     * "videoUrl": "https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.mp4"
-     * },
-     */
-    class MediaInfoViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mediaVideoImg;
+    public LayoutInflater getInflater() {
+        return mInflater;
+    }
 
-        private MediaInfoViewHolder(View itemView) {
-            super(itemView);
-            mediaVideoImg = itemView.findViewById(R.id.imageview_top);
-        }
+    public List<MediaInfo> getMediaInfos() {
+        return mediaInfos;
     }
 }

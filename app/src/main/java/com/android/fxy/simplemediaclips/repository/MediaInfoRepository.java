@@ -38,7 +38,6 @@ public class MediaInfoRepository {
         call.enqueue(new Callback<List<MediainfoResponse.Mediainfo>>() {
             @Override
             public void onResponse(Call<List<MediainfoResponse.Mediainfo>> call, Response<List<MediainfoResponse.Mediainfo>> response) {
-                LogUtils.d("onResponse" + response.isSuccessful());
                 if (response.isSuccessful()) {
                     List<MediainfoResponse.Mediainfo> mSubmitResponse = response.body();
                     for (MediainfoResponse.Mediainfo info : mSubmitResponse) {

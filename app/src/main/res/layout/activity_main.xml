@@ -7,19 +7,19 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_top"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item_top" />
-
-    <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_bottom"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/recyclerview_top"
+        android:layout_height="@dimen/bottom_recycleview_height"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@android:color/holo_red_dark"
         tools:listitem="@layout/recyclerview_item_bottom" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_bottom"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item_top" />
+
 </android.support.constraint.ConstraintLayout>
 
