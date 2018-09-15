@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageview_top"
+    <VideoView
+        android:id="@+id/videoview_top"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@android:color/holo_orange_light"
-        android:gravity="center" />
+        android:layout_height="match_parent" />
 </LinearLayout>

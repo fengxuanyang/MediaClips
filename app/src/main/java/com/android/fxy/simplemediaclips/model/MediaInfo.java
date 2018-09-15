@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.android.fxy.simplemediaclips.commom.LogUtils;
+
 /**
  * {   "id":1,
  * "imageUrl": "https://wpclipart.com/education/animal_numbers/animal_number_1.jpg",
@@ -48,6 +50,12 @@ public class MediaInfo {
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+    @Override
+    public String toString() {
+
+        return "id:" + id + ",imageUrl:" + imageUrl + ",videoUrl:" + videoUrl;
     }
 }
 
