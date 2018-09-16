@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/bottom_recycleview_margin">
+    android:padding="@dimen/bottom_recycleview_padding">
 
-    <com.android.fxy.simplemediaclips.ui.FocuseImageView
+    <com.android.fxy.simplemediaclips.ui.ScaleImageView
         android:id="@+id/imageview_bottom"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

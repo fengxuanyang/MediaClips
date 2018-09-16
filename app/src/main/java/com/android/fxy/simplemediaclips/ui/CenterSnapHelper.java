@@ -16,19 +16,18 @@ public class CenterSnapHelper extends SnapHelper {
     private static final String TAG = "CenterSnapHelper";
     private static final float INVALID_DISTANCE = 1f;
     private int currentCenterPosition = -1;
+    private RecyclerView mRecyclerView;
+    // Orientation helpers are lazily created per LayoutManager.
+    @Nullable
+    private OrientationHelper mVerticalHelper;
+    @Nullable
+    private OrientationHelper mHorizontalHelper;
     private CenterChangeListener mCenterChangeListener = new CenterChangeListener() {
         @Override
         public void onCenterChange(int pisition) {
 
         }
     };
-
-    // Orientation helpers are lazily created per LayoutManager.
-    @Nullable
-    private OrientationHelper mVerticalHelper;
-    @Nullable
-    private OrientationHelper mHorizontalHelper;
-
 
     @Override
     public int[] calculateDistanceToFinalSnap(
@@ -133,7 +132,6 @@ public class CenterSnapHelper extends SnapHelper {
         } else if (layoutManager.canScrollHorizontally()) {
             view = findCenterView(layoutManager, getHorizontalHelper(layoutManager));
         }
-
         if (view != null) {
             int position = layoutManager.getPosition(view);
             if (position != currentCenterPosition) {
@@ -141,7 +139,6 @@ public class CenterSnapHelper extends SnapHelper {
             }
             currentCenterPosition = position;
         }
-
         return view;
     }
 
@@ -149,7 +146,6 @@ public class CenterSnapHelper extends SnapHelper {
         this.mCenterChangeListener = centerChangeListener;
     }
 
-    private RecyclerView mRecyclerView;
 
     @Override
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView) throws IllegalStateException {
@@ -169,19 +165,6 @@ public class CenterSnapHelper extends SnapHelper {
         return viewCenter - correctCenter;
     }
 
-
-    private int distanceToCenter(@NonNull RecyclerView.LayoutManager layoutManager,
-                                 @NonNull View targetView, OrientationHelper helper) {
-        final int childCenter = helper.getDecoratedStart(targetView)
-                + (helper.getDecoratedMeasurement(targetView) / 2);
-        final int containerCenter;
-        if (layoutManager.getClipToPadding()) {
-            containerCenter = helper.getStartAfterPadding() + helper.getTotalSpace() / 2;
-        } else {
-            containerCenter = helper.getEnd() / 2;
-        }
-        return childCenter - containerCenter;
-    }
 
     /**
      * Estimates a position to which SnapHelper will try to scroll to in response to a fling.
@@ -222,7 +205,6 @@ public class CenterSnapHelper extends SnapHelper {
         if (childCount == 0) {
             return null;
         }
-
         View closestChild = null;
         final int center;
         if (layoutManager.getClipToPadding()) {
@@ -269,7 +251,6 @@ public class CenterSnapHelper extends SnapHelper {
         if (childCount == 0) {
             return INVALID_DISTANCE;
         }
-
         for (int i = 0; i < childCount; i++) {
             View child = layoutManager.getChildAt(i);
             final int pos = layoutManager.getPosition(child);
@@ -319,6 +300,4 @@ public class CenterSnapHelper extends SnapHelper {
     public interface CenterChangeListener {
         void onCenterChange(int pisition);
     }
-
-
 }
