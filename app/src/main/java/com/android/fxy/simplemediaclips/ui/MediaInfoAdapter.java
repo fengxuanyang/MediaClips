@@ -17,6 +17,7 @@ public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder> exten
     };
     private final LayoutInflater mInflater;
     private List<MediaInfo> mediaInfos;
+    protected int mSellectPosition = -1;
 
     public MediaInfoAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -24,6 +25,10 @@ public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder> exten
 
     public void setOnItemSelected(ItemSelectedListener listener) {
         this.mItemSelectedListener = listener;
+    }
+
+    public void sellect(int pisition) {
+        mSellectPosition = pisition;
     }
 
     public interface ItemSelectedListener {

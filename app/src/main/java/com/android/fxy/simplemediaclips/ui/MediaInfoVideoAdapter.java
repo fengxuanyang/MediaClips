@@ -1,6 +1,7 @@
 package com.android.fxy.simplemediaclips.ui;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +21,18 @@ public class MediaInfoVideoAdapter extends MediaInfoAdapter<MediaInfoVideoAdapte
         super(context);
     }
 
+
     @NonNull
     @Override
     public MediaInfoVideoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = getInflater().inflate(R.layout.recyclerview_item_top, parent, false);
         return new MediaInfoVideoHolder(itemView);
+    }
+
+    @Override
+    public void sellect(int pisition) {
+        super.sellect(pisition);
+        notifyItemChanged(pisition);
     }
 
     @Override
@@ -34,11 +42,19 @@ public class MediaInfoVideoAdapter extends MediaInfoAdapter<MediaInfoVideoAdapte
             MediaInfo current = getMediaInfos().get(position);
             Uri uri = Uri.parse(current.getVideoUrl());
             holder.videoView.setVideoURI(uri);
-            holder.videoView.requestFocus();
-            holder.videoView.start();
+            holder.videoView.seekTo(1);
+            holder.videoView.setOnPreparedListener(mPlayer);
         }
+
     }
 
+    private MediaPlayer.OnPreparedListener mPlayer = new MediaPlayer.OnPreparedListener() {
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            mp.start();
+            mp.setLooping(true);
+        }
+    };
 
     /**
      * {   "id":1,
