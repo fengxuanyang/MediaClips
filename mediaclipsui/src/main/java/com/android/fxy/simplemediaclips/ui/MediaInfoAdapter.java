@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
-import com.android.fxy.simplemediaclips.model.MediaInfo;
-
 import java.util.List;
 
 public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {

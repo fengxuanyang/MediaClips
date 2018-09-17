@@ -17,7 +17,6 @@ public class MediaInfoViewModel extends AndroidViewModel {
     private MediaInfoRepository mediaInfoRepository;
     private MutableLiveData<MediaInfo> currentMediaInfo;
 
-
     public MediaInfoViewModel(@NonNull Application application) {
         super(application);
         mediaInfoRepository = new MediaInfoRepository(application);

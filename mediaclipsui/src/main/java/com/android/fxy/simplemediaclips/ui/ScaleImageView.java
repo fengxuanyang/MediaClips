@@ -1,8 +1,6 @@
 package com.android.fxy.simplemediaclips.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
