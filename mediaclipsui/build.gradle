@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
-    artifactId = 'simplemediaclips'
-    uploadName = 'simplemediaclipUI'
-    publishVersion = '1.0.2'
+    artifactId = 'MiniClipsUI'
+    uploadName = 'MiniClipsUI'
+    publishVersion = '1.0.4'
     userOrg = 'fengxuanyang'
     repoName = "maven"
-    groupId = 'com.android.fxy.simplemediaclips.ui'
-    desc = 'simplemediaclipUI'
+    groupId = 'fengxuanyang.maven'
+    desc = 'MiniClipsUI'
     website = 'https://github.com/fengxuanyang/MediaClips.git'
     licences = ['Apache-2.0']
 }
@@ -46,7 +46,7 @@ dependencies {
 
     // picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation "com.android.support:exifinterface:27.1.1"
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

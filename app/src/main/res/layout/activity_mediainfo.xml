@@ -10,8 +10,7 @@
         android:id="@+id/recyclerview_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_recycleview_height"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/recyclerview_item_bottom" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.android.fxy.simplemediaclips.ui.TopRecyclerView
         android:id="@+id/recyclerview_top"
@@ -19,8 +18,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/recyclerview_bottom"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_item_top" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 
