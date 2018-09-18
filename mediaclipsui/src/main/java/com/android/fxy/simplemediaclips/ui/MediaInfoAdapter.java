@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import java.util.List;
 
 public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<VH> {
-
+    public static final int START_VACANCY = 0;
+    public static final int END_VACANCY = 0;
     protected ItemSelectedListener mItemSelectedListener = new ItemSelectedListener() {
         @Override
         public void onItemSellectk(int position) {
@@ -33,8 +34,9 @@ public abstract class MediaInfoAdapter<VH extends RecyclerView.ViewHolder, T> ex
         void onItemSellectk(int position);
     }
 
-    public void setData(List<T> items) {
+    public void setData(List<T> items, int start) {
         this.datas = items;
+        mSellectPosition = start;
         notifyDataSetChanged();
     }
 

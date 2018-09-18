@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MediaInfoActivity">
 
-    <com.android.fxy.simplemediaclips.ui.BottomRecyclerView
+    <com.android.fxy.simplemediaclips.ui.MediaClipsRecyclerView
         android:id="@+id/recyclerview_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_recycleview_height"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:mediaType="image" />
 
-    <com.android.fxy.simplemediaclips.ui.TopRecyclerView
+    <com.android.fxy.simplemediaclips.ui.MediaClipsRecyclerView
         android:id="@+id/recyclerview_top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/recyclerview_bottom"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:mediaType="video" />
 
 </android.support.constraint.ConstraintLayout>
 

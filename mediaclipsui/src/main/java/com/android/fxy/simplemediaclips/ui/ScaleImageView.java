@@ -4,8 +4,11 @@ import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 public class ScaleImageView extends AppCompatImageView {
+    private static final String TAG = "ScaleImageView";
+
     public ScaleImageView(Context context) {
         super(context);
     }
@@ -19,16 +22,17 @@ public class ScaleImageView extends AppCompatImageView {
     }
 
     public void scaleUp() {
+        Log.d(TAG, "scaleUp");
         ViewCompat.animate(this)
-                .setDuration(200)
+                .setDuration(400)
                 .scaleX(1.2f)
                 .scaleY(1.2f)
                 .start();
     }
 
     public void scaleDown() {
+        Log.d(TAG, "scaleDown");
         ViewCompat.animate(this)
-                .setDuration(200)
                 .scaleX(1f)
                 .scaleY(1f)
                 .start();

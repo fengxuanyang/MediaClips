@@ -61,8 +61,4 @@ public class HttpRetrofitManager {
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE);
     }
 
-    private void printLog(String message) {
-        Log.d(TAG, message);
-    }
-
 }

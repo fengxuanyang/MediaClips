@@ -30,28 +30,20 @@ public class CenterSnapHelper extends SnapHelper {
     @Override
     public int[] calculateDistanceToFinalSnap(
             @NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
-
         int[] out = new int[2];
-
         if (layoutManager.canScrollHorizontally()) {
             out[0] = distanceToCenter(targetView, getHorizontalHelper(layoutManager));
         } else {
             out[0] = 0;
         }
-
-        if (layoutManager.canScrollVertically()) {
-            out[1] = distanceToCenter(targetView, getVerticalHelper(layoutManager));
-        } else {
-            out[1] = 0;
-        }
         return out;
-
     }
 
 
     @Override
     public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX,
                                       int velocityY) {
+
         if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider)) {
             return RecyclerView.NO_POSITION;
         }
@@ -116,6 +108,7 @@ public class CenterSnapHelper extends SnapHelper {
         if (targetPos >= itemCount) {
             targetPos = itemCount - 1;
         }
+
         return targetPos;
     }
 
@@ -129,6 +122,7 @@ public class CenterSnapHelper extends SnapHelper {
         }
         if (view != null) {
             int position = layoutManager.getPosition(view);
+
             if (position != currentCenterPosition) {
                 mCenterChangeListener.onCenterChange(position);
             }

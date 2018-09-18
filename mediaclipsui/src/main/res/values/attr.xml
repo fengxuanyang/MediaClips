@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MediaClipsRecyclerView">
+        <attr name="mediaType">
+            <enum name="image" value="-1" />
+            <enum name="video" value="-2" />
+        </attr>
+    </declare-styleable>
+</resources>
+
+
+
