@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
 
-import com.android.fxy.simplemediaclips.R;
-import com.android.fxy.simplemediaclips.commom.LogUtils;
-
 
 public class MediaInfoVideoAdapter extends MediaInfoAdapter<MediaInfoVideoAdapter.MediaInfoVideoHolder, String> {
 
@@ -36,7 +33,6 @@ public class MediaInfoVideoAdapter extends MediaInfoAdapter<MediaInfoVideoAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MediaInfoVideoHolder holder, int position) {
-        LogUtils.d("MediaInfoVideoAdapter mediaInfos:" + getDatas());
         if (getDatas() != null) {
             Uri uri = Uri.parse(getDatas().get(position));
             holder.videoView.setVideoURI(uri);

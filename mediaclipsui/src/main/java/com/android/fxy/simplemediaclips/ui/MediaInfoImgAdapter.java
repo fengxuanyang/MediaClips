@@ -7,8 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.fxy.simplemediaclips.R;
-import com.android.fxy.simplemediaclips.model.MediaInfo;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 

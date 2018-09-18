@@ -1,45 +1,51 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
+publish {
+    artifactId = 'MiniClipsUI'
+    uploadName = 'MiniClipsUI'
+    publishVersion = '1.0.4'
+    userOrg = 'fengxuanyang'
+    repoName = "maven"
+    groupId = 'fengxuanyang.maven'
+    desc = 'MiniClipsUI'
+    website = 'https://github.com/fengxuanyang/MediaClips.git'
+    licences = ['Apache-2.0']
+}
 android {
     compileSdkVersion 27
+
+
+
     defaultConfig {
-        applicationId "com.android.fxy.simplemediaclips"
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //MiniClipsUI
-    implementation 'fengxuanyang.maven:MiniClipsUI:1.0.4'
-
-    // butterknife
+     // butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    // Room
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
-    // Lifecycle
-    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
 
-    //retrofit2
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "com.android.support:exifinterface:27.1.1"
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
