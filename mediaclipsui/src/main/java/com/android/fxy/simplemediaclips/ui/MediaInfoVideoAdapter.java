@@ -38,7 +38,6 @@ public class MediaInfoVideoAdapter extends MediaInfoAdapter<MediaInfoVideoAdapte
             holder.videoView.setVideoURI(uri);
             holder.videoView.setOnPreparedListener(mPlayer);
         }
-
     }
 
     private MediaPlayer.OnPreparedListener mPlayer = new MediaPlayer.OnPreparedListener() {

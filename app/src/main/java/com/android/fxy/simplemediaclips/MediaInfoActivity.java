@@ -9,8 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.android.fxy.simplemediaclips.commom.LogUtils;
 import com.android.fxy.simplemediaclips.model.MediaInfo;
-import com.android.fxy.simplemediaclips.ui.BottomRecyclerView;
-import com.android.fxy.simplemediaclips.ui.TopRecyclerView;
+import com.android.fxy.simplemediaclips.ui.MediaClipsRecyclerView;
 import com.android.fxy.simplemediaclips.viewmodels.MediaInfoViewModel;
 
 import java.util.ArrayList;
@@ -23,14 +22,13 @@ public class MediaInfoActivity extends AppCompatActivity {
     private static final String TAG = "MediaInfoActivity";
 
     @BindView(R.id.recyclerview_top)
-    TopRecyclerView topRecyclerview;
+    MediaClipsRecyclerView topRecyclerview;
     @BindView(R.id.recyclerview_bottom)
-    BottomRecyclerView bottomRecyclerview;
+    MediaClipsRecyclerView bottomRecyclerview;
 
     private MediaInfoViewModel mMediaInfoViewModel;
     private LiveData<List<MediaInfo>> mediaInfObserver;
-    private ArrayList<String> imagsUrls = new ArrayList<>();
-    private List<String> videoUrls = new ArrayList<>();
+
 
     public static final int STATE_TOP_SNAP = 1;
     public static final int STATE_BOTTOM_SNAP = 2;
@@ -55,14 +53,14 @@ public class MediaInfoActivity extends AppCompatActivity {
         mediaInfObserver.observe(this, new Observer<List<MediaInfo>>() {
             @Override
             public void onChanged(@Nullable final List<MediaInfo> datas) {
-                imagsUrls.clear();
-                videoUrls.clear();
+                ArrayList<String> imagsUrls = new ArrayList<>();
+                List<String> videoUrls = new ArrayList<>();
                 for (MediaInfo info : datas) {
                     imagsUrls.add(info.getImageUrl());
                     videoUrls.add(info.getVideoUrl());
                 }
-                bottomRecyclerview.bindSource(imagsUrls);
-                topRecyclerview.bindSource(videoUrls);
+                bottomRecyclerview.bindSource(imagsUrls, 0);
+                topRecyclerview.bindSource(videoUrls, 0);
             }
         });
 
@@ -79,10 +77,9 @@ public class MediaInfoActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_mediainfo);
         ButterKnife.bind(this);
-        topRecyclerview.setCenterChangeListener(new TopRecyclerView.CenterChangeListener() {
+        topRecyclerview.setCenterChangeListener(new MediaClipsRecyclerView.CenterChangeListener() {
             @Override
             public void onCenterChange(int position) {
-                LogUtils.d("onCenterChange topRecyclerview position:" + position);
                 mMediaInfoViewModel.getCurrentMediaInfo().setValue(mediaInfObserver.getValue().get(position));
                 snapState = snapState | STATE_TOP_SNAP;
                 if (!((snapState & STATE_SNAP_ALL) == STATE_BOTTOM_SNAP)) {
@@ -92,10 +89,9 @@ public class MediaInfoActivity extends AppCompatActivity {
                 snapState = 0;
             }
         });
-        bottomRecyclerview.setCenterChangeListener(new BottomRecyclerView.CenterChangeListener() {
+        bottomRecyclerview.setCenterChangeListener(new MediaClipsRecyclerView.CenterChangeListener() {
             @Override
             public void onCenterChange(int position) {
-                LogUtils.d("onCenterChange bottomRecyclerview position:" + position);
                 snapState = snapState | STATE_BOTTOM_SNAP;
                 if (!((snapState & STATE_SNAP_ALL) == STATE_TOP_SNAP)) {
                     topRecyclerview.seekTo(position);

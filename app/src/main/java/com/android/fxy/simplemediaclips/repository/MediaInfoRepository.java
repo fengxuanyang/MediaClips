@@ -2,6 +2,9 @@ package com.android.fxy.simplemediaclips.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.db.SupportSQLiteDatabase;
+import android.arch.persistence.room.RoomDatabase;
+import android.support.annotation.NonNull;
 
 import com.android.fxy.simplemediaclips.commom.LogUtils;
 import com.android.fxy.simplemediaclips.model.MediaInfo;
@@ -25,25 +28,29 @@ public class MediaInfoRepository {
     private MediaInfoDao meidaInfoDao;
     private MediainfoRequestApi getPicApi;
     private ExecutorService singleThreadPool;
+    private LiveData<List<MediaInfo>> mLiveData;
+
 
     public MediaInfoRepository(Application application) {
         singleThreadPool = Executors.newSingleThreadExecutor();
         getPicApi = HttpRetrofitManager.getInstance().creatHttpApi(MediainfoRequestApi.class);
         meidaInfoDao = MediaInfoDatabase.getDatabase(application).mediaInfoDao();
-        init();
     }
 
-    private void init() {
+
+    private void getWebData() {
         Call<List<MediainfoResponse.Mediainfo>> call = getPicApi.pictures();
         call.enqueue(new Callback<List<MediainfoResponse.Mediainfo>>() {
             @Override
             public void onResponse(Call<List<MediainfoResponse.Mediainfo>> call, Response<List<MediainfoResponse.Mediainfo>> response) {
                 if (response.isSuccessful()) {
                     List<MediainfoResponse.Mediainfo> mSubmitResponse = response.body();
-                    for (MediainfoResponse.Mediainfo info : mSubmitResponse) {
-                        LogUtils.d("submit success msg:" + info.toString());
-                        insert(new MediaInfo(info.getId(), info.getImageUrl(), info.getVideoUrl()));
+                    MediaInfo[] infos = new MediaInfo[mSubmitResponse.size()];
+                    for (int i = 0; i < mSubmitResponse.size(); i++) {
+                        MediainfoResponse.Mediainfo info = mSubmitResponse.get(i);
+                        infos[i] = new MediaInfo(info.getId(), info.getImageUrl(), info.getVideoUrl());
                     }
+                    insertAll(infos);
                 }
             }
 
@@ -56,14 +63,26 @@ public class MediaInfoRepository {
         });
     }
 
+
     //TODO cache List<MediaInfo>
     public LiveData<List<MediaInfo>> getAllMediaInfo() {
-        LogUtils.d(TAG, "getAllMediaInfo");
-        return meidaInfoDao.getAllMediaInfo();
+        if (mLiveData == null) {
+            getWebData();
+            mLiveData = meidaInfoDao.getAllMediaInfo();
+        }
+        return mLiveData;
+    }
+
+    public void insertAll(final MediaInfo... mediainfos) {
+        singleThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                meidaInfoDao.insertAll(mediainfos);
+            }
+        });
     }
 
     public void insert(final MediaInfo mediainfo) {
-        LogUtils.d(TAG, "insert");
         singleThreadPool.execute(new Runnable() {
             @Override
             public void run() {
@@ -73,7 +92,6 @@ public class MediaInfoRepository {
     }
 
     public void deleteAll() {
-        LogUtils.d(TAG, "deleteAll");
         singleThreadPool.execute(new Runnable() {
             @Override
             public void run() {

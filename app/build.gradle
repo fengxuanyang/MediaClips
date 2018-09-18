@@ -22,7 +22,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //MiniClipsUI
-    implementation 'fengxuanyang.maven:MiniClipsUI:1.0.4'
+//    implementation 'fengxuanyang.maven:MiniClipsUI:1.0.4'
+    implementation   project(':mediaclipsui')
 
     // butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'

@@ -19,13 +19,12 @@ public abstract class MediaInfoDatabase extends RoomDatabase {
     public abstract MediaInfoDao mediaInfoDao();
 
     public static MediaInfoDatabase getDatabase(final Context context) {
-        LogUtils.d( "getDatabase");
-
         if (INSTANCE == null) {
             synchronized (MediaInfoDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             MediaInfoDatabase.class, "media_info")
+                            .allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -40,13 +39,13 @@ public abstract class MediaInfoDatabase extends RoomDatabase {
                 @Override
                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
-                    LogUtils.d(TAG ,"onOpen");
-                 }
+                    LogUtils.d(TAG, "onOpen");
+                }
 
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                     super.onCreate(db);
-                    LogUtils.d(TAG ,"onCreate");
+                    LogUtils.d(TAG, "onCreate");
 
                 }
             };
