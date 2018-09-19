@@ -1,4 +1,4 @@
-package com.android.fxy.simplemediaclips.db;
+package com.android.fxy.simplemediaclips.data.db;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -7,8 +7,9 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.android.fxy.simplemediaclips.commom.LogUtils;
-import com.android.fxy.simplemediaclips.model.MediaInfo;
+import com.android.fxy.simplemediaclips.data.commom.LogUtils;
+import com.android.fxy.simplemediaclips.data.model.MediaInfo;
+
 
 @Database(entities = {MediaInfo.class}, version = 1)
 public abstract class MediaInfoDatabase extends RoomDatabase {
@@ -33,8 +34,8 @@ public abstract class MediaInfoDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback() {
+    private static Callback sRoomDatabaseCallback =
+            new Callback() {
 
                 @Override
                 public void onOpen(@NonNull SupportSQLiteDatabase db) {

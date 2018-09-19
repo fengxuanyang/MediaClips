@@ -1,6 +1,4 @@
-package com.android.fxy.simplemediaclips.web;
-
-import android.util.Log;
+package com.android.fxy.simplemediaclips.data.web;
 
 import com.google.gson.Gson;
 

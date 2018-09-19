@@ -1,10 +1,8 @@
-package com.android.fxy.simplemediaclips.model;
+package com.android.fxy.simplemediaclips.data.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-
-import com.android.fxy.simplemediaclips.commom.LogUtils;
 
 /**
  * {   "id":1,

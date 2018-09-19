@@ -1,4 +1,4 @@
-package com.android.fxy.simplemediaclips.viewmodels;
+package com.android.fxy.simplemediaclips.data.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -6,8 +6,8 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.android.fxy.simplemediaclips.model.MediaInfo;
-import com.android.fxy.simplemediaclips.repository.MediaInfoRepository;
+import com.android.fxy.simplemediaclips.data.model.MediaInfo;
+import com.android.fxy.simplemediaclips.data.repository.MediaInfoRepository;
 
 import java.util.List;
 
