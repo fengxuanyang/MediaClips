@@ -1,18 +1,16 @@
-package com.android.fxy.simplemediaclips.repository;
+package com.android.fxy.simplemediaclips.data.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.RoomDatabase;
-import android.support.annotation.NonNull;
 
-import com.android.fxy.simplemediaclips.commom.LogUtils;
-import com.android.fxy.simplemediaclips.model.MediaInfo;
-import com.android.fxy.simplemediaclips.db.MediaInfoDao;
-import com.android.fxy.simplemediaclips.db.MediaInfoDatabase;
-import com.android.fxy.simplemediaclips.web.HttpRetrofitManager;
-import com.android.fxy.simplemediaclips.web.MediainfoRequestApi;
-import com.android.fxy.simplemediaclips.web.MediainfoResponse;
+
+import com.android.fxy.simplemediaclips.data.commom.LogUtils;
+import com.android.fxy.simplemediaclips.data.db.MediaInfoDao;
+import com.android.fxy.simplemediaclips.data.db.MediaInfoDatabase;
+import com.android.fxy.simplemediaclips.data.model.MediaInfo;
+import com.android.fxy.simplemediaclips.data.web.HttpRetrofitManager;
+import com.android.fxy.simplemediaclips.data.web.MediainfoRequestApi;
+import com.android.fxy.simplemediaclips.data.web.MediainfoResponse;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

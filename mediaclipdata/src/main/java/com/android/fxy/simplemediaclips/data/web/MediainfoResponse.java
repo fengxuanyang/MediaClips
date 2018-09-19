@@ -1,4 +1,4 @@
-package com.android.fxy.simplemediaclips.web;
+package com.android.fxy.simplemediaclips.data.web;
 
 
 public class MediainfoResponse {
