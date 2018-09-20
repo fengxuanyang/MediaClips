@@ -12,6 +12,10 @@ import com.android.fxy.simplemediaclips.data.repository.MediaInfoRepository;
 import java.util.List;
 
 
+/**
+ * MediaInfoDatabase.getDatabase(application) for Room ,  need the application
+ * it necessary to put  Room init in the application ?
+ */
 public class MediaInfoViewModel extends AndroidViewModel {
 
     private MediaInfoRepository mediaInfoRepository;
@@ -19,15 +23,11 @@ public class MediaInfoViewModel extends AndroidViewModel {
 
     public MediaInfoViewModel(@NonNull Application application) {
         super(application);
-        mediaInfoRepository = new MediaInfoRepository(application);
+        mediaInfoRepository = MediaInfoRepository.getInstance(application);
     }
 
     public LiveData<List<MediaInfo>> getAllMediaInfo() {
         return mediaInfoRepository.getAllMediaInfo();
-    }
-
-    public void insert(MediaInfo mediainfo) {
-        mediaInfoRepository.insert(mediainfo);
     }
 
     public void deleteAll() {
