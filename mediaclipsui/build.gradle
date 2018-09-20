@@ -4,7 +4,7 @@ apply plugin: 'com.novoda.bintray-release'
 publish {
     artifactId = 'MiniClipsUI'
     uploadName = 'MiniClipsUI'
-    publishVersion = '1.0.4'
+    publishVersion = '1.0.6'
     userOrg = 'fengxuanyang'
     repoName = "maven"
     groupId = 'fengxuanyang.maven'
